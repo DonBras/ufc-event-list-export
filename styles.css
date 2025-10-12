@@ -170,3 +170,7 @@ section h2 {
   color: black;
   font-size: 12px;
 }
+
+.google-sheets-compatible td {
+  border-bottom: none;
+}
