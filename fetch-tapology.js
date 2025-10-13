@@ -19,9 +19,7 @@ async function parseEventListFromURL(url) {
 function parseEventListFromHTML(html, baseUrl = "") {
   const tmp = document.createElement("div");
   tmp.innerHTML = html;
-  console.log(tmp);
   const list = tmp.querySelector('ul[data-event-view-toggle-target="list"]');
-  console.log(list);
   if (!list) return [];
 
   const items = [];
@@ -37,9 +35,8 @@ function parseEventListFromHTML(html, baseUrl = "") {
     const fighter2 = boutEntry?.children[2]
       ?.querySelector(".link-primary-red")
       ?.textContent.trim();
-    console.log(fighter1, fighter2, rounds);
     // if either not present, skip
-    if (!fighter1 || !fighter2 || !rounds) return;
+    if (!fighter1 || !fighter2) return;
 
     // produce tuple of three strings
     items.push({ fighter1, fighter2, fiveRounds: rounds === "5 x 5" });
@@ -95,12 +92,10 @@ async function loadFromTapology(url) {
     .then((html) => {
       const tmp = document.createElement("div");
       tmp.innerHTML = html;
-      console.log(tmp);
       const a = tmp.querySelector(".fightcenterEvents a");
       const href = a
         ? new URL(a.getAttribute("href"), "https://www.tapology.com").href
         : null;
-      console.log(href);
       parseEventListFromURL(href)
         .then((fights) => {
           renderFightList(fights);
@@ -115,7 +110,6 @@ async function loadFromTapology(url) {
 const loadTapologyBtn = document.getElementById("load-tapology-btn");
 loadTapologyBtn?.addEventListener("click", () => {
   console.log("Loading from tapology...");
-
   loadFromTapology(
     `https://api.codetabs.com/v1/proxy?quest=https://www.tapology.com/fightcenter?group=ufc`
   );
