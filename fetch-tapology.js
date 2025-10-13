@@ -42,7 +42,7 @@ function parseEventListFromHTML(html, baseUrl = "") {
     items.push({ fighter1, fighter2, fiveRounds: rounds === "5 x 5" });
   });
 
-  return items;
+  return items.reverse();
 }
 
 function buildListRow(id = "fight-list-template") {
