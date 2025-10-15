@@ -114,3 +114,13 @@ loadTapologyBtn?.addEventListener("click", () => {
     `https://api.codetabs.com/v1/proxy?quest=https://www.tapology.com/fightcenter?group=ufc`
   );
 });
+
+window.addEventListener(
+  "load",
+  () => {
+    loadFromTapology(
+      `https://api.codetabs.com/v1/proxy?quest=https://www.tapology.com/fightcenter?group=ufc`
+    );
+  },
+  false
+);
